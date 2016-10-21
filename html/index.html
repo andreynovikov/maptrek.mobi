@@ -13,6 +13,11 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+                <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png"/>
+                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+                <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"/>
+                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+                <link rel="manifest" href="/manifest.json"/>
 	</head>
 	<body id="top">
 
@@ -24,7 +29,7 @@
 					  You decide how to journey today,<br/>
 					  not the application!</p>
 					<ul class="actions">
-						<li><a href="/downloads/MapTrek-alpha3.apk" class="button special icon fa-download" onClick="ga('send', 'event', { eventCategory: 'download', eventAction: 'package', eventLabel: 'alpha3'});">Download</a></li>
+						<li><a href="https://play.google.com/store/apps/details?id=mobi.maptrek" class="button special icon fa-download" onClick="ga('send', 'event', { eventCategory: 'link', eventAction: 'package', eventLabel: 'googleplay'});">Get on Google Play</a></li>
 						<li><a href="#about" class="button icon fa-chevron-down scrolly">Learn More</a></li>
 					</ul>
 				</div>
@@ -93,24 +98,17 @@
 			<section id="more" class="wrapper style2 special">
 				<header class="major inner">
 					<h2>MapTrek is an open source software</h2>
-					<p>MapTrek is developed as a hobby for personal use but is generously shared to public on as-is basis. Developers are welcome to contribute to the project. Specifically experts in OpenGL and PostGIS are much needed.</p>
-					<p>The development is on alpha stage now which means that much of desired functionality is not ready yet. What has to be done before first public release:</p>
-					<ul style="text-align: left; margin: 0 10% 20px">
-					  <li><del>Tracks management (details, renaming, sharing, removing)</del></li>
-					  <li><del>Waypoints management</del></li>
-					  <li>Landscape orientation support</li>
-					  <li><del>Maps download from application</del></li>
-					  <li><del>Data import</del></li>
-					  <li><del>Custom maps</del></li>
-					</ul>
-
-                                        <p>You can join alpha testing program by following the link:
-                                            <a href="https://play.google.com/apps/testing/mobi.maptrek">https://play.google.com/apps/testing/mobi.maptrek</a>.<br/>
-                                            Until application reaches first public release it can be installed for free. You can apply for promo code by writing to me.
+					<p>MapTrek is developed as a hobby for personal use but is generously shared to public on as-is basis. Developers are welcome
+                                            to contribute to the project. Specifically experts in OpenGL and PostGIS are much needed.</p>
+					<p>The development is managed on GitHub, there you can find the source code and the list of
+                                            <a href="https://github.com/andreynovikov/maptrek/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22First+Release%22">open issues</a>.
+                                            You are welcome to join beta testing program by following the link:<br/>
+                                            <a href="https://play.google.com/apps/testing/mobi.maptrek">https://play.google.com/apps/testing/mobi.maptrek</a>.
                                         </p>
+                                        <p>Questions about MapTrek can be asked in <a href="https://groups.google.com/forum/#!forum/maptrek">Google Groups Q&amp;A Forum</a>.</p>
 				</header>
 				<ul class="actions">
-				    <li><a href="/downloads/MapTrek-alpha3.apk" class="button special icon fa-download" onClick="ga('send', 'event', { eventCategory: 'download', eventAction: 'package', eventLabel: 'alpha3'});">Download</a></li>
+				    <li><a href="https://play.google.com/store/apps/details?id=mobi.maptrek" class="button special icon fa-download" onClick="ga('send', 'event', { eventCategory: 'link', eventAction: 'package', eventLabel: 'googleplay'});">Get on Google Play</a></li>
 				    <li><a href="#" onclick="ga('send', 'event', { eventCategory: 'donate', eventAction: 'paypal', eventLabel: 'paypal'}); document.forms['paypal'].submit(); return false;" class="button special icon fa-paypal">Donate</a></li>
 			            <li><a href="https://andreynovikov.info/tag/maptrek.html" class="button special icon fa-external-link">Learn More</a></li>
 				</ul>
@@ -123,7 +121,8 @@
 			  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
 ">
 </form>
-				<ul class="icons">
+			        <ul class="icons">
+                                  <li><a href="https://groups.google.com/forum/#!forum/maptrek" class="icon fa-pencil-square"><span class="label">Google Groups</span></a></li>
 				  <li><a href="https://github.com/andreynovikov/maptrek" class="icon fa-github-square"><span class="label">GitHub</span></a></li>
 				</ul>
 				<p class="copyright">&copy; Andrey Novikov. Credits: <a href="http://html5up.net">HTML5 UP</a></p>
