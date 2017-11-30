@@ -13,6 +13,11 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+        <link rel="manifest" href="/manifest.json"/>
     </head>
     <body id="top">
 
@@ -137,8 +142,10 @@
 		<h2>MapTrek is an open source software</h2>
 		<p>MapTrek is developed as a hobby for personal use but is generously shared to public on as-is basis.
                     Developers are welcome to contribute to the project. Specifically experts in OpenGL are much needed.</p>
-                <p>You are welcome to join beta testing program by following the link:
-                    <a href="https://play.google.com/apps/testing/mobi.maptrek">https://play.google.com/apps/testing/mobi.maptrek</a>.</p>
+                <p>The development is managed on GitHub, there you can find the source code and the list of
+                    <a href="https://github.com/andreynovikov/maptrek/issues">open issues</a>. You are welcome to join beta
+                    testing program by following the link:
+                    <a href="https://play.google.com/apps/testing/mobi.maptrek" onClick="ga('send', 'event', { eventCategory: 'link', eventAction: 'package', eventLabel: 'googleplay'});">https://play.google.com/apps/testing/mobi.maptrek</a>.</p>
 	    </header>
 	    <ul class="actions">
 		<li><a href="/downloads/MapTrek-2017.11.apk" class="button special icon fa-download" onClick="ga('send', 'event', { eventCategory: 'download', eventAction: 'package', eventLabel: 'release'});">Download</a></li>
@@ -156,7 +163,7 @@
             </form>
 	    <ul class="icons">
 		<li><a href="https://github.com/andreynovikov/maptrek" class="icon fa-github-square"><span class="label">GitHub</span></a></li>
-		<li><a href="https://play.google.com/store/apps/developer?id=Andrey%20Novikov" class="icon fa-android"><span class="label">Google Play</span></a></li>
+		<li><a href="https://play.google.com/store/apps/developer?id=Andrey%20Novikov" class="icon fa-android" onClick="ga('send', 'event', { eventCategory: 'link', eventAction: 'package', eventLabel: 'googleplay'});"><span class="label">Google Play</span></a></li>
                 <li><a href="https://groups.google.com/forum/#!forum/maptrek" class="icon fa-comments"><span class="label">Google Groups</span></a></li>
 	    </ul>
 	    <p class="copyright">&copy; Andrey Novikov. Credits: <a href="http://html5up.net">HTML5 UP</a></p>
