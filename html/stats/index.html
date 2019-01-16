@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <script src="https://d3js.org/d3.v4.js"></script>
+        <!-- https://www.chartjs.org/ -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+        <style>
+            canvas { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; }
+            .chart-container { width: 500px; margin-left: 40px; margin-right: 40px; margin-bottom: 40px; }
+            .container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+        </style>
+    </head>
+    <body>
+        <div class="container"></div>
+        <div style="width: 600px">
+        </div>
+
+        <script>
+            var request = new XMLHttpRequest();
+            request.open('GET', '/stats/data.json', true);
+            request.onload = function() {
+                if (request.status < 200 || request.status >= 400)
+                    return;
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+                var running_time = [];
+                var tracking_time = [];
+                var background_tracking = [];
+                var native_map_count = [];
+                var map_count = [];
+                var waypoint_count = [];
+                var data_set_count = [];
+                var fullscreen_times = [];
+                var android = {};
+                
+                for (var i = data.length; i--; ) {
+                    running_time[i] = data[i]['running_time'] / 60;
+                    tracking_time[i] = data[i]['tracking_time'] / 60;
+                    background_tracking[i] = tracking_time[i] / running_time[i];
+                    native_map_count[i] = data[i]['native_map_count'];
+                    map_count[i] = data[i]['map_count'];
+                    waypoint_count[i] = data[i]['waypoint_count'];
+                    data_set_count[i] = data[i]['data_set_count'];
+                    fullscreen_times[i] = data[i]['fullscreen_times'];
+                    android[data[i]['android']] = (android[data[i]['android']] || 0) + 1;
+
+
+                }
+
+                drawChart('Running time, h', running_time, 30);
+                drawChart('Tracking time, h', tracking_time, 30);
+                drawChart('Background tracking, ratio', background_tracking, 30);
+                drawChart('Native maps', native_map_count, d3.max(native_map_count));
+                drawChart('User maps', map_count, d3.max(map_count));
+                drawChart('Waypoints', waypoint_count, 30);
+                drawChart('Data sets', data_set_count, d3.max(data_set_count));
+                drawChart('Fullscreen', fullscreen_times, 30);
+                console.log(android);
+                var android_data = [], android_labels = [];
+                Object.keys(android).sort(function(a, b) {
+                    return android[b] - android[a];
+                }).forEach(function(key) {
+                    android_data[android_data.length] = android[key];
+                    android_labels[android_labels.length] = key;
+                });
+                drawChart('Android', android_data, 0, android_labels);
+            };
+            request.send();
+
+            function drawChart(title, data, thresholds, labels) {
+                if (labels === undefined) {
+                    var histGenerator = d3.histogram().thresholds(thresholds);
+                    var bins = histGenerator(data);
+                    data = bins.map(b => b.length || NaN);
+                    labels = bins.map(b => b.x0);
+                    if (labels[0] == 0) {
+                        data.shift();
+                        labels.shift();
+                    }
+                }
+
+                var div = document.createElement('div');
+                div.classList.add('chart-container');
+                var canvas = document.createElement('canvas');
+                div.appendChild(canvas);
+                document.querySelector('.container').appendChild(div);
+
+                var ctx = canvas.getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: data,
+                            borderColor: 'rgb(255, 99, 132)',
+                            borderWidth: 2,
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            //pointBackgroundColor: 'rgb(255, 99, 132)',
+                            //fill: false,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        title: {
+                            display: true,
+                            text: title
+                        },
+                        legend: {
+                            display: false
+                        },
+                        scales: {
+                            xAxes: [{
+                                //display: true,
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        },
+                        tooltips: {
+                            //enabled: false
+                        }
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
